@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acat.mapper.AdminMapper">
+	<sql id="cols">
+        id,username,password,nick
+    </sql>
+   	  
+    <select id="login" parameterType="java.util.Map" resultType="admin">
+		select <include refid="cols"/> from download_admin where username=#{username} and password=#{password}
+	</select>	
+	<!--  
+	  
+	<select id="findAdmin" parameterType="int" resultType="admin">
+		select <include refid="cols"/> from download_admin where id=#{id}
+	</select>
+	 -->
+	<!--  
+	<update id="updateAdmin" parameterType="admin">
+		update download_admin set password=#{password},nick=#{nick} where id=#{id}
+	</update>
+	 -->
+	   
+	<insert id="addFile" parameterType="file">
+		insert into download_file(file,time,admin_id) values(#{file},#{time},#{admin_id})
+	</insert>
+	 
+	  <!--  
+	<delete id="deleteFile" parameterType="int">
+		delete from download_file where id=#{id}
+	</delete>
+	   
+	<select id="findAll" resultType="map">
+		select id,file,time,admin_id from download_file
+	</select>
+	 -->
+	  
+	<select id="findFileByAdmin" parameterType="int" resultType="map">
+		select file.id,file.file,file.time,file.admin_id from download_file file inner join download_admin admin on file.admin_id=admin.id and admin.id=#{id}
+	</select>
+	
+	<select id="findIdByFilename" parameterType="string" resultType="int">
+		select id from download_file where file=#{file}
+	</select>
+	
+</mapper>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.acat.pojo.SuperAdmin" alias="superAdmin"/>
+		<typeAlias type="com.acat.pojo.Admin" alias="admin"/>
+		<typeAlias type="com.acat.pojo.File" alias="file"/>
+		<typeAlias type="com.acat.pojo.FileVo" alias="vo"/>
+		<typeAlias type="com.acat.pojo.Count" alias="count"/>
+	</typeAliases>
+</configuration>

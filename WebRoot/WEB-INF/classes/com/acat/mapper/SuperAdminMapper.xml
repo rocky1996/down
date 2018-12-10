@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acat.mapper.SuperAdminMapper">
+	
+	<sql id="cols">
+        id,username,password,nick
+    </sql>
+		
+	<select id="login" parameterType="java.util.Map" resultType="superAdmin">
+		select <include refid="cols"/> from download_super_admin where username=#{0} and password=#{1}
+	</select>
+	
+	<select id="findSuperAdmin" parameterType="int" resultType="superAdmin">
+		select <include refid="cols"/> from download_super_admin where id=#{id}
+	</select>
+	
+	<select id="superAdminAll" resultType="map">
+		select <include refid="cols"/> from download_super_admin
+	</select>
+	
+	<update id="updateInfor" parameterType="superAdmin">
+		update download_super_admin set password=#{password},nick=#{nick} where id=#{id}
+	</update>
+	
+	<insert id="addAdmin" parameterType="admin">
+		insert into download_admin(username,password,nick) values(#{username},#{password},#{nick})
+	</insert>
+	
+	<delete id="deleteAdmin" parameterType="int">
+		delete from download_admin where id=#{id}
+	</delete>
+	
+	<select id="adminAll" resultType="map">
+		select <include refid="cols"/> from download_admin
+	</select>
+</mapper>
